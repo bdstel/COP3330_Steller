@@ -1,30 +1,51 @@
-import java.util.Scanner;
-
 public class TaskItem
 {
     protected String title;
     protected String desc;
     protected String dueDate;
 
-    public TaskItem()
+    public TaskItem(String title, String desc, String dueDate)
     {
+        if(titleIsValid(title)) {
+            this.title = title;
+        } else {
+            throw new InvalidTitleException("Invalid Title; must be at least 1 character long");
+        }
 
+        this.desc = desc;
+
+        if(dueDateIsValid(dueDate)) {
+            this.dueDate = dueDate;
+        } else {
+            throw new InvalidDueDateException("Invalid Due Date; must be in the format YYYY-MM-DD");
+        }
     }
 
-    public TaskItem createItem()
+    public boolean titleIsValid(String title)
     {
-        TaskItem task = new TaskItem();
-        Scanner scan = new Scanner(System.in);
+        return title.length() > 0;
+    }
 
-        System.out.print("Task Title: ");
-        task.title = scan.nextLine();
+    public boolean dueDateIsValid(String dueDate)
+    {
+        return dueDate.length() == 10 &&
+                dueDate.toCharArray()[4] == '-' &&
+                dueDate.toCharArray()[7] == '-';
+    }
+}
 
-        System.out.print("Task description: ");
-        task.desc = scan.nextLine();
+class InvalidTitleException extends IllegalArgumentException
+{
+    public InvalidTitleException(String msg)
+    {
+        super(msg);
+    }
+}
 
-        System.out.print("Task due date (YYYY-MM-DD): ");
-        task.dueDate = scan.nextLine();
-
-        return task;
+class InvalidDueDateException extends IllegalArgumentException
+{
+    public InvalidDueDateException(String msg)
+    {
+        super(msg);
     }
 }

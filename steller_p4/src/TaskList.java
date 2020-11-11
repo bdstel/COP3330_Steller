@@ -3,20 +3,19 @@ import java.util.ArrayList;
 public class TaskList
 {
     protected int size;
-    protected ArrayList<TaskList> items;
+    protected ArrayList<TaskItem> items;
 
-    public TaskList()
+    public TaskList(int size, ArrayList<TaskItem> items)
     {
-
+        this.size = size;
+        this.items = items;
     }
 
     public TaskList createList()
     {
-        TaskList list = new TaskList();
+        int size = 0;
+        ArrayList<TaskItem> items = new ArrayList<>();
 
-        list.size = 0;
-        list.items = null;
-
-        return list;
+        return new TaskList(size, items);
     }
 }
