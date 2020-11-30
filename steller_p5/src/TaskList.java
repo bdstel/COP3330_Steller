@@ -69,7 +69,7 @@ public class TaskList
     {
         if (i < 0 || i >= tasks.size())
         {
-            throw new IllegalArgumentException("Index must be within 0 and the list size")
+            throw new IllegalArgumentException("Index must be within 0 and the list size");
         }
 
         return tasks.get(i);
@@ -90,7 +90,7 @@ public class TaskList
         tasks.remove(task);
     }
 
-    public void load(String filename)
+    public void read(String filename)
     {
         try(BufferedReader bufferedReader = new BufferedReader(new FileReader(filename)))
         {
@@ -122,7 +122,7 @@ public class TaskList
         }
     }
 
-    public void save(String filename)
+    public void write(String filename)
     {
         try(Formatter output = new Formatter(filename))
         {
